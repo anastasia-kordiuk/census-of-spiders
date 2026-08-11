@@ -222,9 +222,12 @@ graph_fam <- ggplot(df_observed, aes(mid_pred, n_rec2, color = Family)) +
         strip.background = element_rect(fill = "#dafdce"),
         strip.text = element_text(size = 8, lineheight = 0.9, hjust = 0.5))  # Уменьшение междустрочного интервала
 
-print(graph_fam)
-
-ggsave("plotfamfinal.pdf", plot = graph_fam, device = cairo_pdf, width = 9, height = 13.5)
+if(interactive()){print(graph_fam)}
+ggsave(
+    paste0("plot-fam_", Sys.Date(), ".pdf"),
+    plot = graph_fam,
+    device = cairo_pdf,
+    width = 9, height = 13.5)
 
 # models species---------------------------
 models3 <- expand_grid(
@@ -360,4 +363,9 @@ graph_sp <- ggplot(df_observed_sp, aes(mid_pred, n_rec2, color = Species)) +
         strip.background = element_rect(fill = "#dafdce"),
         strip.text = element_text(size = 9))
 
-ggsave("plotspfinal.pdf", plot = graph_sp, device = cairo_pdf, height = 13.5, width = 9)
+if(interactive()){print(graph_sp)}
+ggsave(
+    paste0("plot-spc_", Sys.Date(), ".pdf"),
+    plot = graph_sp,
+    device = cairo_pdf,
+    width = 9, height = 13.5)
